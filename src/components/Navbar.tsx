@@ -32,13 +32,12 @@ export default function Navbar() {
       initial={{ opacity: 0, y: -80 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`sticky top-0 z-50 -mx-6 px-6 sm:-mx-12 sm:px-12 transition-all duration-300 ${
-        scrolled ? "bg-white/70 backdrop-blur-md shadow-sm py-4" : "bg-transparent py-5"
-      }`}
+      className={`sticky top-0 z-50 -mx-6 px-6 sm:-mx-12 sm:px-12 transition-all duration-300 ${scrolled ? "bg-white/70 backdrop-blur-md shadow-sm py-4" : "bg-transparent py-5"
+        }`}
     >
       <div className="flex items-center justify-between">
         <Link href="/" className="text-xl sm:text-2xl font-bold tracking-tight">
-          <span className="gradient-text">Muthu</span>
+          <span className="gradient-text">Makeshkumar</span>
           <span className="text-[#1e2235]">Portfolio</span>
           <span className="text-teal-600">.</span>
         </Link>

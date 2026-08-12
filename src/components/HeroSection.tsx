@@ -32,7 +32,7 @@ export default function HeroSection() {
           </motion.span>
           <h1 className="text-3xl font-bold leading-tight text-[#1e2235] md:font-extrabold lg:text-[2.7rem] lg:leading-[3.4rem]">
             Hello, I'm <br />
-            <span className="gradient-text">MUTHU</span>
+            <span className="gradient-text">MAKESHKUMAR</span>
           </h1>
           <div className="mt-3 text-xl md:text-2xl font-semibold text-gray-700 min-h-[2.2rem]">
             <Typewriter
@@ -95,9 +95,19 @@ export default function HeroSection() {
             <div className="overflow-x-auto border-t-[2px] border-indigo-900 px-4 lg:px-8 py-4 lg:py-8">
               <code className="font-mono text-xs md:text-sm lg:text-base leading-relaxed whitespace-pre block">
                 <div><span className="mr-2 text-pink-500">const</span><span className="mr-2 text-white">engineer</span><span className="mr-2 text-pink-500">=</span><span className="text-gray-400">{`{`}</span></div>
-                <div><span className="ml-4 lg:ml-8 mr-2 text-white">name:</span><span className="text-amber-300">'Muthu'</span><span className="text-gray-400">,</span></div>
+                <div><span className="ml-4 lg:ml-8 mr-2 text-white">name:</span><span className="text-amber-300">'Makeshkumar'</span><span className="text-gray-400">,</span></div>
                 <div><span className="ml-4 lg:ml-8 mr-2 text-white">role:</span><span className="text-amber-300">'Full Stack & AI Engineer'</span><span className="text-gray-400">,</span></div>
-                <div className="ml-4 lg:ml-8 mr-2"><span className="text-white">expertise:</span><span className="text-gray-400"> ['</span><span className="text-amber-300">RAG</span><span className="text-gray-400">', '</span><span className="text-amber-300">LLMs</span><span className="text-gray-400">', '</span><span className="text-amber-300">Next.js</span><span className="text-gray-400">', '</span><span className="text-amber-300">Node.js</span><span className="text-gray-400">', '</span><span className="text-amber-300">Python</span><span className="text-gray-400">', '</span><span className="text-amber-300">AWS</span><span className="text-gray-400">'],</span></div>
+                <div className="ml-4 lg:ml-8 mr-2">
+                  <span className="text-white">expertise:</span><span className="text-gray-400"> ['</span>
+                  <span className="text-amber-300">RAG</span><span className="text-gray-400">', '</span>
+                  <span className="text-amber-300">LLMs</span><span className="text-gray-400">', '</span>
+                  <span className="text-amber-300">Next.js</span><span className="text-gray-400">', '</span>
+                  <span className="text-amber-300">Node.js</span><span className="text-gray-400">', '</span>
+                  <span className="text-amber-300">Python</span>
+                  <span className="text-gray-400"></span>
+                  {/* <span className="text-amber-300">AWS</span> */}
+                  <span className="text-gray-400">'],</span>
+                </div>
                 <div><span className="ml-4 lg:ml-8 mr-2 text-white">hardWorker:</span><span className="text-orange-400">true</span><span className="text-gray-400">,</span></div>
                 <div><span className="ml-4 lg:ml-8 mr-2 text-white">quickLearner:</span><span className="text-orange-400">true</span><span className="text-gray-400">,</span></div>
                 <div><span className="ml-4 lg:ml-8 mr-2 text-green-400">hireable:</span><span className="text-orange-400">function</span><span className="text-gray-400">() {`{`}</span></div>

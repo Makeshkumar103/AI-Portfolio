@@ -22,7 +22,7 @@ export default function AboutSection() {
             Who I am?
           </p>
           <p className="text-gray-600 text-sm lg:text-lg leading-relaxed">
-            Hi, I'm Muthu — a Full Stack & AI Engineer with 3+ years of experience building scalable, high-performance web applications across the frontend and backend.<br /><br />
+            Hi, I'm Makeshkumar — a Full Stack & AI Engineer with 1 year of experience building scalable, high-performance web applications across the frontend and backend.<br /><br />
             I specialize in AI-powered features such as intelligent chatbots built on Large Language Models (LLMs) and Retrieval-Augmented Generation (RAG), backed by vector search. I work fluently across React, Next.js, Node.js, Python and cloud platforms, and I've successfully delivered reliable, production-ready solutions.<br /><br />
             I love turning complex problems into clean, intuitive products — and I'm always eager to take on new challenges in fast-paced, dynamic environments.
           </p>
