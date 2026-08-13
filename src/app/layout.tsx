@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Muthu — Full Stack & AI Engineer",
-  description: "Portfolio of Muthu, Full Stack & AI Engineer.",
+  title: "Makeshkumar — Full Stack & AI Engineer",
+  description: "Portfolio of Makeshkumar, Full Stack & AI Engineer.",
 };
 
 export default function RootLayout({
@@ -27,8 +27,8 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col relative text-[#1e2235]">
         {/* Background Mesh and Blurs */}
         <div className="fixed inset-0 -z-50 overflow-hidden bg-[#f7f8fd]">
-          <div 
-            className="absolute inset-0 opacity-[0.5]" 
+          <div
+            className="absolute inset-0 opacity-[0.5]"
             style={{
               backgroundImage: 'linear-gradient(to right, #1e22350a 1px, transparent 1px), linear-gradient(to bottom, #1e22350a 1px, transparent 1px)',
               backgroundSize: '48px 48px',
@@ -40,7 +40,7 @@ export default function RootLayout({
           <div className="absolute top-1/4 -right-24 h-[26rem] w-[26rem] rounded-full bg-pink-300/25 blur-[100px]"></div>
           <div className="absolute bottom-0 left-1/3 h-[24rem] w-[24rem] rounded-full bg-teal-200/25 blur-[100px]"></div>
         </div>
-        
+
         {children}
       </body>
     </html>
