@@ -36,9 +36,12 @@ export default function AboutSection() {
         >
           <div className="relative">
             <div className="absolute -inset-2 rounded-2xl bg-gradient-to-r from-pink-400 via-violet-500 to-teal-400 opacity-70 blur-md"></div>
-            <div className="relative rounded-2xl bg-white p-1.5 shadow-lg w-[300px] h-[300px] flex items-center justify-center overflow-hidden">
+            {/* <div className="relative rounded-2xl bg-white p-1.5 shadow-lg w-[300px] h-[300px] flex items-center justify-center overflow-hidden"> */}
+            <div className="relative rounded-2xl bg-white p-1.5 shadow-lg w-[350px] h-[450px] flex items-center justify-center overflow-hidden">
+
               <div className="w-full h-full bg-gray-100 flex items-center justify-center rounded-xl font-bold text-gray-400 text-2xl">
-                PROFILE IMAGE
+                {/* PROFILE IMAGE */}
+                <img src="/hprofile.png" alt="profile.png" />
               </div>
             </div>
           </div>
