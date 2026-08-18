@@ -66,7 +66,7 @@ export default function HeroSection() {
                 <Mail size={16} />
               </button>
             </Link>
-            <Link href="#" target="_blank" className="flex items-center gap-1 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-6 py-3 text-center text-xs font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 hover:gap-3 hover:shadow-lg hover:shadow-violet-500/30 md:px-8 md:py-4 md:text-sm md:font-semibold">
+            <Link href="/Resume.pdf" target="_blank" className="flex items-center gap-1 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-6 py-3 text-center text-xs font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 hover:gap-3 hover:shadow-lg hover:shadow-violet-500/30 md:px-8 md:py-4 md:text-sm md:font-semibold">
               <span>Get Resume</span>
               <Download size={16} />
             </Link>
