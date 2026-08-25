@@ -5,11 +5,16 @@ import { GraduationCap, MapPin, Calendar } from "lucide-react";
 export default function EducationSection() {
   const education = [
     {
-      degree: "Bachelor of Engineering in Computer Science",
-      institution: "Anna University",
-      location: "Chennai, India",
-      date: "2019 - 2023",
-      score: "CGPA: 8.5/10",
+      degree: "Bachelor of Engineering in Electronics and Communication Engineering",
+      institution: "Kamaraj College of Engineering and Technology",
+      location: "Virudhunagar, Tamil Nadu, India",
+      date: "2016 - 2020",
+    },
+    {
+      degre: "Higher Secondary Education",
+      institution: "ST Francis Matriculation Higher Secondary School",
+      location: "Thirumangalam, Madurain, Tamil Nadu",
+      date: "2015 - 2016",
     }
   ];
 
@@ -61,9 +66,9 @@ export default function EducationSection() {
                     </span>
                   </div>
                   
-                  <p className="mt-4 text-sm font-medium text-gray-700 bg-white/50 inline-block px-3 py-1 rounded-md border border-gray-200">
+                  {/* <p className="mt-4 text-sm font-medium text-gray-700 bg-white/50 inline-block px-3 py-1 rounded-md border border-gray-200">
                     {edu.score}
-                  </p>
+                  </p> */}
                 </div>
               </motion.div>
             ))}
