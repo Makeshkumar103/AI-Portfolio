@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Bot, X, Send } from "lucide-react";
+import { data } from "framer-motion/client";
 
 export default function Chatbot() {
     const [message, setMessage] = useState("");
@@ -28,7 +29,10 @@ export default function Chatbot() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     message: userMessage,
-                    history: messages
+                    history: messages.map((item) => ({
+                        role: item.role === "bot" ? "assistant" : "user",
+                        content: item.text,
+                    })),
                 }),
             });
 
