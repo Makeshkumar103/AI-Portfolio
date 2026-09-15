@@ -11,7 +11,7 @@ export default function Chatbot() {
     const [isLoading, setIsLoading] = useState(false);
 
     // const API_URL = process.env.NEXT_API_URL || "http://localhost:8000";
-    const API_URL = process.env.NEXT_API_URL || "http://127.0.0.1:8000";
+    const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 
     const sendMessage = async () => {
