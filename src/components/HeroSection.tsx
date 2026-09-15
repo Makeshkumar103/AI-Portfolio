@@ -60,16 +60,16 @@ export default function HeroSection() {
             </Link> */}
           </div>
           <div className="flex flex-wrap items-center gap-3">
-            <Link href="#contact" className="group rounded-full bg-gradient-to-r from-violet-600 to-pink-500 p-[1px] transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/30">
+            <a href="#contact" className="group rounded-full bg-gradient-to-r from-violet-600 to-pink-500 p-[1px] transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/30">
               <button className="flex items-center gap-1 rounded-full border-none bg-white px-6 py-3 text-center text-xs font-medium uppercase tracking-wider text-[#1e2235] transition-all duration-200 group-hover:gap-3 md:px-8 md:py-4 md:text-sm md:font-semibold">
                 <span>Contact me</span>
                 <Mail size={16} />
               </button>
-            </Link>
-            <Link href="/Resume.pdf" target="_blank" className="flex items-center gap-1 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-6 py-3 text-center text-xs font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 hover:gap-3 hover:shadow-lg hover:shadow-violet-500/30 md:px-8 md:py-4 md:text-sm md:font-semibold">
+            </a>
+            <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-6 py-3 text-center text-xs font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 hover:gap-3 hover:shadow-lg hover:shadow-violet-500/30 md:px-8 md:py-4 md:text-sm md:font-semibold">
               <span>Get Resume</span>
               <Download size={16} />
-            </Link>
+            </a>
           </div>
         </motion.div>
 
