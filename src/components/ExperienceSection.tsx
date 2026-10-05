@@ -4,11 +4,35 @@ import { Briefcase, MapPin, CheckCircle2 } from "lucide-react";
 
 export default function ExperienceSection() {
   const experiences = [
+    // {
+    //   date: "Dec 2025 - Present",
+    //   role: "Full Stack & AI Engineer",
+    //   company: "Constient Global Solutions",
+    //   location: "Chennai",
+    //   achievements: [
+    //     "Designed and built an AI-powered chatbot using LLMs and Retrieval-Augmented Generation (RAG) to deliver accurate, context-aware answers over enterprise data.",
+    //     "Implemented semantic search and document retrieval with pgvector on PostgreSQL and Elasticsearch, generating and indexing embeddings for fast similarity matching.",
+    //     "Developed LLM-driven pipelines to extract and structure data from unstructured documents, improving accuracy and reducing manual effort.",
+    //     "Integrated multiple LLM APIs with prompt engineering to optimize response accuracy, latency and cost.",
+    //   ],
+    // },
+    // {
+    //   date: "Sep 2023 - Dec 2025",
+    //   role: "Full Stack Developer & Team Lead",
+    //   company: "Genpixels Tech Pvt Ltd",
+    //   location: "Coimbatore",
+    //   achievements: [
+    //     "Designed and shipped responsive full-stack web applications end-to-end across frontend (React, Next.js) and backend (Node.js, Python).",
+    //     "Built secure REST APIs and integrated the Razorpay payment gateway for seamless, reliable online transactions.",
+    //     "Deployed and scaled applications on AWS using EC2, RDS, S3, Elastic Beanstalk, Amplify and CodePipeline.",
+    //     "Led a development team — assigning tasks, reviewing code and mentoring members — to deliver projects on schedule with high code quality.",
+    //   ],
+    // },
     {
-      date: "Dec 2025 - Present",
-      role: "Full Stack & AI Engineer",
-      company: "Constient Global Solutions",
-      location: "Chennai",
+      date: "Jan 2024 - Present",
+      role: "Full Stack Developer & Team Lead",
+      company: "NiralSoft Pvt Ltd",
+      location: "Madurai",
       achievements: [
         "Designed and built an AI-powered chatbot using LLMs and Retrieval-Augmented Generation (RAG) to deliver accurate, context-aware answers over enterprise data.",
         "Implemented semantic search and document retrieval with pgvector on PostgreSQL and Elasticsearch, generating and indexing embeddings for fast similarity matching.",
@@ -17,10 +41,10 @@ export default function ExperienceSection() {
       ],
     },
     {
-      date: "Sep 2023 - Dec 2025",
-      role: "Full Stack Developer & Team Lead",
-      company: "Genpixels Tech Pvt Ltd",
-      location: "Coimbatore",
+      date: "Dec 2022 - Dec 2023",
+      role: "Frontend Developer",
+      company: "IEDEO",
+      location: "Velachery, Chennai",
       achievements: [
         "Designed and shipped responsive full-stack web applications end-to-end across frontend (React, Next.js) and backend (Node.js, Python).",
         "Built secure REST APIs and integrated the Razorpay payment gateway for seamless, reliable online transactions.",
@@ -50,7 +74,7 @@ export default function ExperienceSection() {
       <div className="py-8">
         <div className="relative max-w-3xl mx-auto">
           <div className="absolute left-6 md:left-[27px] top-2 bottom-2 w-[2px] bg-gradient-to-b from-pink-500 via-violet-600 to-transparent"></div>
-          
+
           <div className="flex flex-col gap-10">
             {experiences.map((exp, index) => (
               <motion.div
@@ -64,7 +88,7 @@ export default function ExperienceSection() {
                 <span className="absolute left-2 md:left-3 top-1 flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-violet-600 to-pink-500 text-white shadow-lg shadow-violet-500/30">
                   <Briefcase size={18} />
                 </span>
-                
+
                 <div className="glass glow-border rounded-2xl p-6">
                   <p className="text-sm font-medium text-teal-600 mb-1">{exp.date}</p>
                   <h3 className="text-xl font-semibold text-[#1e2235]">{exp.role}</h3>
@@ -74,7 +98,7 @@ export default function ExperienceSection() {
                       <MapPin size={14} /> {exp.location}
                     </span>
                   </p>
-                  
+
                   <ul className="mt-5 flex flex-col gap-3">
                     {exp.achievements.map((achievement, i) => (
                       <li key={i} className="flex gap-3 text-sm text-gray-600 leading-relaxed">
