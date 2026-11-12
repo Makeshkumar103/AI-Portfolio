@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Sparkles, Database, BrainCircuit, Network } from "lucide-react";
+import { Sparkles, Database, BrainCircuit, Network, Mic, Clock } from "lucide-react";
 
 export default function AiSection() {
   const aiSkills = [
@@ -9,6 +9,12 @@ export default function AiSection() {
       title: "AI Chatbots & RAG",
       description: "Designed and built AI-powered chatbots using LLMs and Retrieval-Augmented Generation to deliver accurate, context-aware answers over enterprise data.",
       tags: ["LLM", "RAG", "Context-aware"],
+    },
+    {
+      icon: <Mic />,
+      title: "Voice AI & Neural Speech",
+      description: "Implemented high-performance Speech-to-Text with Groq Whisper and Neural Text-to-Speech synthesis with Edge-TTS for real-time voice conversations.",
+      tags: ["Whisper STT", "Neural TTS", "Voice Chat", "MediaRecorder"],
     },
     {
       icon: <Database />,
@@ -24,9 +30,15 @@ export default function AiSection() {
     },
     {
       icon: <BrainCircuit />,
-      title: "LLM Integration",
-      description: "Integrated multiple LLM APIs and applied prompt engineering to optimize chatbot response accuracy, latency and cost — exposed securely through REST APIs.",
-      tags: ["LLM APIs", "Prompt Engineering", "REST"],
+      title: "LLM Integration & Tool Calling",
+      description: "Integrated multiple LLM APIs, prompt engineering, and function tool execution (including push notification dispatchers and external API integrations).",
+      tags: ["LLM APIs", "Function Calling", "Pushover", "REST"],
+    },
+    {
+      icon: <Clock />,
+      title: "Session Memory & Persistence",
+      description: "Engineered persistent session memory architectures storing timestamped conversation histories for continuity across user reloads and multi-turn workflows.",
+      tags: ["Session Memory", "State Persistence", "Context Window"],
     },
   ];
 

@@ -8,6 +8,13 @@ import Link from "next/link";
 export default function ProjectsSection() {
   const projects = [
     {
+      title: "AI Digital Twin & Voice Assistant",
+      description: "An interactive digital twin with Speech-to-Text (Groq Whisper), Neural Voice Text-to-Speech (Edge-TTS), persistent session memory, and Pushover notification tools.",
+      tags: ["FastAPI", "Whisper STT", "Edge-TTS", "Session Memory", "Next.js"],
+      github: "#",
+      demo: "#",
+    },
+    {
       title: "AI Enterprise Knowledge Base",
       description: "A RAG-powered chatbot application that allows enterprise users to query their internal documents securely. Built with Next.js, FastAPI, and pgvector.",
       tags: ["Next.js", "Python", "pgvector", "LLMs"],
