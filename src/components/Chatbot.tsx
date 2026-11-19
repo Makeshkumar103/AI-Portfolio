@@ -202,6 +202,12 @@ export default function Chatbot() {
           const voiceData = await voiceRes.json();
           if (isMounted && Array.isArray(voiceData) && voiceData.length > 0) {
             setVoices(voiceData);
+            const saved = localStorage.getItem("digital_twin_voice");
+            // If the user's saved voice was Christopher or unset, auto-select cloned voice if available
+            if (!saved || saved === "en-US-ChristopherNeural") {
+              const customVoice = voiceData.find((v: VoiceOption) => v.gender === "Custom") || voiceData[0];
+              setSelectedVoice(customVoice.id);
+            }
           }
         }
       } catch {

@@ -15,6 +15,15 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Makeshkumar — Full Stack & AI Engineer",
   description: "Portfolio of Makeshkumar, Full Stack & AI Engineer.",
+  icons: {
+    icon: [
+      { url: "/MK-icon.png", type: "image/png" },
+    ],
+    apple: [
+      { url: "/MK-icon.png", type: "image/png" },
+    ],
+    shortcut: "/MK-icon.png",
+  },
 };
 
 export default function RootLayout({
