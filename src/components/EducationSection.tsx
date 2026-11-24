@@ -53,7 +53,7 @@ export default function EducationSection() {
                   <GraduationCap size={20} />
                 </span>
                 
-                <div className="glass glow-border rounded-2xl p-6">
+                <div className="glass glow-border rounded-2xl p-4 sm:p-6">
                   <h3 className="text-xl font-bold text-[#1e2235]">{edu.degree}</h3>
                   <p className="text-violet-600 font-semibold mt-1">{edu.institution}</p>
                   

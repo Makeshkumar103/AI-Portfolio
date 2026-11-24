@@ -89,7 +89,7 @@ export default function ExperienceSection() {
                   <Briefcase size={18} />
                 </span>
 
-                <div className="glass glow-border rounded-2xl p-6">
+                <div className="glass glow-border rounded-2xl p-4 sm:p-6">
                   <p className="text-sm font-medium text-teal-600 mb-1">{exp.date}</p>
                   <h3 className="text-xl font-semibold text-[#1e2235]">{exp.role}</h3>
                   <p className="mt-2 flex flex-wrap items-center gap-x-3 text-sm text-gray-600">

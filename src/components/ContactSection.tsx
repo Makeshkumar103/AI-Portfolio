@@ -61,7 +61,7 @@ export default function ContactSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <div className="glass glow-border rounded-2xl p-8">
+          <div className="glass glow-border rounded-2xl p-5 sm:p-8">
             <form className="flex flex-col gap-5" onSubmit={(e) => e.preventDefault()}>
               <div>
                 <label htmlFor="name" className="text-sm font-medium text-gray-700 mb-1 block">Your Name</label>

@@ -32,7 +32,7 @@ export default function AiSection() {
       icon: <BrainCircuit />,
       title: "LLM Integration & Tool Calling",
       description: "Integrated multiple LLM APIs, prompt engineering, and function tool execution (including push notification dispatchers and external API integrations).",
-      tags: ["LLM APIs", "Function Calling", "Pushover", "REST"],
+      tags: ["LLM APIs", "Function Calling", "Telegram Alerts", "REST"],
     },
     {
       icon: <Clock />,

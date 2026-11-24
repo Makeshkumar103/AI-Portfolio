@@ -48,7 +48,7 @@ export default function HeroSection() {
           <p className="mt-5 max-w-xl text-sm lg:text-base text-gray-600 leading-relaxed">
             I build scalable, production-ready web apps and AI-powered features — intelligent chatbots, RAG pipelines and vector search — with a focus on clean, intuitive product experiences.
           </p>
-          <div className="my-8 flex items-center gap-5">
+          <div className="my-2 sm:my-4 flex items-center gap-5">
             {/* <Link href="https://github.com/" target="_blank" className="text-gray-500 transition-colors duration-300 hover:text-pink-600">
               <Github size={28} />
             </Link>

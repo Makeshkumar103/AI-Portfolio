@@ -9,7 +9,7 @@ export default function ProjectsSection() {
   const projects = [
     {
       title: "AI Digital Twin & Voice Assistant",
-      description: "An interactive digital twin with Speech-to-Text (Groq Whisper), Neural Voice Text-to-Speech (Edge-TTS), persistent session memory, and Pushover notification tools.",
+      description: "An interactive digital twin with Speech-to-Text (Groq Whisper), Neural Voice Text-to-Speech (Edge-TTS), persistent session memory, and Telegram notification tools.",
       tags: ["FastAPI", "Whisper STT", "Edge-TTS", "Session Memory", "Next.js"],
       github: "#",
       demo: "#",

@@ -9,5 +9,6 @@
 - [x] Markdown & code formatting rendering (Safe parser for bold, inline code, code blocks, line breaks)
 - [x] Suggested questions & starter chips
 - [x] Resume download (linked to `/Resume.pdf`)
-- [x] Contact capture & tool notifications (Pushover integration via FastAPI tools)
+- [x] Contact capture & tool notifications (Telegram integration via FastAPI tools)
 - [x] Tool calling to FastAPI (`/chat`, `/chat/voice`, `/audio/tts`, `/audio/voices`, `/history/{session_id}`)
+- [x] Admin console token usage & cost analytics (Prompt, completion, total tokens, per-model breakdown & cost in Neon PostgreSQL & UI)

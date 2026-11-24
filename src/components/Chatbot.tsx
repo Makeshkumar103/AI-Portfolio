@@ -17,6 +17,7 @@ import {
   Loader2,
   User,
   Trash2,
+  Cpu,
 } from "lucide-react";
 
 interface MessageItem {
@@ -46,6 +47,12 @@ function getFormattedTime(): string {
 }
 
 const DEFAULT_VOICES: VoiceOption[] = [
+  {
+    id: "3db1a7b6-d51c-4ae4-ab4a-3501821b8285",
+    name: "Makesh (My Cloned Voice - Cartesia)",
+    gender: "Custom",
+    locale: "en-US",
+  },
   {
     id: "en-US-ChristopherNeural",
     name: "Christopher (US Male - Professional)",
@@ -104,32 +111,125 @@ const SUGGESTED_QUESTIONS = [
   "📬 How can I contact or hire Makeshkumar?",
 ];
 
+interface PersonaMeta {
+  title: string;
+  badge: string;
+  badgeClass: string;
+  avatarBg: string;
+  icon: React.ComponentType<{ className?: string }>;
+  placeholder: string;
+  statusLabel: string;
+  thinkingLabel: string;
+  defaultGreeting: string;
+  resetGreeting: string;
+  resetConfirmText: string;
+  suggestedQuestions: string[];
+}
+
+const PERSONA_CONFIG: Record<string, PersonaMeta> = {
+  "digital-twin": {
+    title: "Makeshkumar Twin",
+    badge: "Digital Twin",
+    badgeClass: "bg-violet-100 dark:bg-violet-900/50 text-violet-700 dark:text-violet-300 border border-violet-500/30",
+    avatarBg: "from-violet-600 to-pink-500 shadow-violet-500/20",
+    icon: Bot,
+    placeholder: "Ask or talk to Makesh's Twin...",
+    statusLabel: "Digital Twin Active",
+    thinkingLabel: "Twin is thinking",
+    defaultGreeting:
+      "Hello! 👋 I am **Makeshkumar's AI Digital Twin** with speech intelligence.\n\nAsk me anything about Makeshkumar's full-stack & AI engineering experience, projects, tech stack, or click the microphone to speak with me directly!",
+    resetGreeting: "Memory cleared! 🧹 What would you like to explore next about Makeshkumar?",
+    resetConfirmText: "Are you sure you want to reset your conversation history with Makeshkumar's Digital Twin?",
+    suggestedQuestions: [
+      "👋 Who is Makeshkumar and what is his background?",
+      "🤖 What AI & RAG projects have you built?",
+      "🛠️ What is your core full-stack and AI tech stack?",
+      "💼 What is your work experience?",
+      "📬 How can I contact or hire Makeshkumar?",
+    ],
+  },
+  "founder": {
+    title: "Founder",
+    badge: "Founder",
+    badgeClass: "bg-pink-100 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300 border border-pink-500/30",
+    avatarBg: "from-pink-600 to-rose-500 shadow-pink-500/20",
+    icon: Sparkles,
+    placeholder: "Ask about startup roadmap, strategy, or partnerships...",
+    statusLabel: "Founder Active",
+    thinkingLabel: "Founder is thinking",
+    defaultGreeting:
+      "Hello! 👋 I am **Makeshkumar's Founder** persona.\n\nI represent Makeshkumar's strategic vision, startup execution, and commercial leadership. Ask me about our business roadmap, technical strategy, or partnership opportunities!",
+    resetGreeting: "Memory cleared! 🧹 What would you like to explore about startup vision and roadmap?",
+    resetConfirmText: "Are you sure you want to reset your conversation history with Founder Persona?",
+    suggestedQuestions: [
+      "🚀 What is your long-term startup vision and roadmap?",
+      "📈 What commercial market opportunities are you targeting?",
+      "💡 How do you approach architectural decisions and team leadership?",
+      "🤝 How can we discuss partnerships, enterprise pilots, or investment?",
+    ],
+  },
+  "ai-engineer": {
+    title: "AI Engineer",
+    badge: "AI Engineer",
+    badgeClass: "bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 border border-emerald-500/30",
+    avatarBg: "from-emerald-600 to-teal-500 shadow-emerald-500/20",
+    icon: Cpu,
+    placeholder: "Ask about system design, RAG pipelines, or code...",
+    statusLabel: "AI Engineer Active",
+    thinkingLabel: "AI Engineer is thinking",
+    defaultGreeting:
+      "Hello! 👋 I am **Makeshkumar's AI Engineer** persona.\n\nAsk me about production LLM architectures, RAG pipelines, model fine-tuning, autonomous agent systems, or engineering trade-offs!",
+    resetGreeting: "Memory cleared! 🧹 What would you like to discuss with the AI Engineer?",
+    resetConfirmText: "Are you sure you want to reset your conversation history with the AI Engineer?",
+    suggestedQuestions: [
+      "⚡ How do you design and optimize low-latency RAG pipelines?",
+      "🤖 What is your architecture for multi-agent autonomous workflows?",
+      "🎯 How do you benchmark and evaluate fine-tuned LLMs?",
+      "🏗️ What are your core engineering patterns for production AI backends?",
+    ],
+  },
+};
+
+function getPersonaMeta(persona: string): PersonaMeta {
+  const key = (persona || "digital-twin").toLowerCase().trim();
+  if (PERSONA_CONFIG[key]) {
+    return PERSONA_CONFIG[key];
+  }
+  const formatted = key
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+  return {
+    title: formatted,
+    badge: formatted,
+    badgeClass: "bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 border border-blue-500/30",
+    avatarBg: "from-blue-600 to-indigo-500 shadow-blue-500/20",
+    icon: Bot,
+    placeholder: `Ask or talk to ${formatted}...`,
+    statusLabel: `${formatted} Active`,
+    thinkingLabel: `${formatted} is thinking`,
+    defaultGreeting: `Hello! 👋 I am Makeshkumar's **${formatted}** persona. How can I assist you today?`,
+    resetGreeting: `Memory cleared! 🧹 What would you like to discuss with ${formatted}?`,
+    resetConfirmText: `Are you sure you want to reset your conversation history with ${formatted}?`,
+    suggestedQuestions: [
+      "👋 Who is Makeshkumar and what is his background?",
+      "🤖 What AI & RAG projects have you built?",
+      "🛠️ What is your core full-stack and AI tech stack?",
+      "💼 What is your work experience?",
+      "📬 How can I contact or hire Makeshkumar?",
+    ],
+  };
+}
+
 export default function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState<MessageItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Audio & Voice States with lazy initialization
-  const [autoPlayAudio, setAutoPlayAudio] = useState<boolean>(() => {
-    if (typeof window === "undefined") return true;
-    try {
-      const saved = localStorage.getItem("digital_twin_auto_play");
-      return saved !== null ? saved === "true" : true;
-    } catch {
-      return true;
-    }
-  });
-
-  const [selectedVoice, setSelectedVoice] = useState<string>(() => {
-    if (typeof window === "undefined") return "en-US-ChristopherNeural";
-    try {
-      return localStorage.getItem("digital_twin_voice") || "en-US-ChristopherNeural";
-    } catch {
-      return "en-US-ChristopherNeural";
-    }
-  });
-
+  // Audio & Voice States
+  const [autoPlayAudio, setAutoPlayAudio] = useState<boolean>(true);
+  const [selectedVoice, setSelectedVoice] = useState<string>("en-US-ChristopherNeural");
   const [voices, setVoices] = useState<VoiceOption[]>(DEFAULT_VOICES);
   const [showVoiceSettings, setShowVoiceSettings] = useState(false);
   const [playingMessageId, setPlayingMessageId] = useState<string | null>(null);
@@ -139,22 +239,115 @@ export default function Chatbot() {
   const [isRecording, setIsRecording] = useState(false);
   const [recordingSeconds, setRecordingSeconds] = useState(0);
 
-  // Session & Backend States with lazy initialization
-  const [sessionId, setSessionId] = useState<string>(() => {
-    if (typeof window === "undefined") return "";
+  // Session & Backend States
+  const [sessionId, setSessionId] = useState<string>("");
+  const [backendOnline, setBackendOnline] = useState<boolean | null>(null);
+  const [activePersona, setActivePersona] = useState<string>("digital-twin");
+
+  // Hydrate client-only settings from localStorage safely after initial mount
+  useEffect(() => {
     try {
+      const savedAutoPlay = localStorage.getItem("digital_twin_auto_play");
+      if (savedAutoPlay !== null) setAutoPlayAudio(savedAutoPlay === "true");
+
+      const savedVoice = localStorage.getItem("digital_twin_voice");
+      if (savedVoice) setSelectedVoice(savedVoice);
+
+      const savedPersona = localStorage.getItem("twin_active_persona");
+      if (savedPersona) setActivePersona(savedPersona);
+
       let sid = localStorage.getItem("digital_twin_session_id");
       if (!sid) {
         sid = `session_${Math.random().toString(36).substring(2, 10)}`;
         localStorage.setItem("digital_twin_session_id", sid);
       }
-      return sid;
+      setSessionId(sid);
     } catch {
-      return `session_${Math.random().toString(36).substring(2, 10)}`;
+      // ignore
     }
-  });
+  }, []);
 
-  const [backendOnline, setBackendOnline] = useState<boolean | null>(null);
+  const currentPersonaMeta = getPersonaMeta(activePersona);
+  const PersonaIcon = currentPersonaMeta.icon;
+
+  // Synchronize voice default according to active persona:
+  // - digital-twin: Makesh (Cartesia cloned voice)
+  // - otherwise (founder, ai-engineer, etc.): Christopher ("en-US-ChristopherNeural")
+  useEffect(() => {
+    if (activePersona === "digital-twin") {
+      const makeshVoice = voices.find(
+        (v) =>
+          v.gender === "Custom" ||
+          v.id === "3db1a7b6-d51c-4ae4-ab4a-3501821b8285" ||
+          v.name.toLowerCase().includes("makesh")
+      );
+      setSelectedVoice(makeshVoice ? makeshVoice.id : "en-US-ChristopherNeural");
+    } else {
+      setSelectedVoice("en-US-ChristopherNeural");
+    }
+  }, [activePersona, voices]);
+
+  // Real-time listener for persona changes from admin console or storage
+  useEffect(() => {
+    const handleCustomChange = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      if (customEvent.detail) {
+        const nextP = customEvent.detail;
+        setActivePersona(nextP);
+        try {
+          localStorage.setItem("twin_active_persona", nextP);
+        } catch {}
+        const meta = getPersonaMeta(nextP);
+        setMessages((prev) => {
+          if (
+            prev.length <= 1 &&
+            (prev.length === 0 || prev[0].id === "greeting" || prev[0].id === "reset_greeting")
+          ) {
+            return [
+              {
+                id: "greeting",
+                role: "assistant",
+                content: meta.defaultGreeting,
+                timestamp: prev[0]?.timestamp || getFormattedTime(),
+              },
+            ];
+          }
+          return prev;
+        });
+      }
+    };
+
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === "twin_active_persona" && e.newValue) {
+        const nextP = e.newValue;
+        setActivePersona(nextP);
+        const meta = getPersonaMeta(nextP);
+        setMessages((prev) => {
+          if (
+            prev.length <= 1 &&
+            (prev.length === 0 || prev[0].id === "greeting" || prev[0].id === "reset_greeting")
+          ) {
+            return [
+              {
+                id: "greeting",
+                role: "assistant",
+                content: meta.defaultGreeting,
+                timestamp: prev[0]?.timestamp || getFormattedTime(),
+              },
+            ];
+          }
+          return prev;
+        });
+      }
+    };
+
+    window.addEventListener("twin_persona_change", handleCustomChange);
+    window.addEventListener("storage", handleStorageChange);
+    return () => {
+      window.removeEventListener("twin_persona_change", handleCustomChange);
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
 
   // Refs
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -188,6 +381,12 @@ export default function Chatbot() {
           const data = await res.json();
           if (isMounted) {
             setBackendOnline(data.status === "running");
+            if (data.active_persona) {
+              setActivePersona(data.active_persona);
+              try {
+                localStorage.setItem("twin_active_persona", data.active_persona);
+              } catch {}
+            }
           }
         } else if (isMounted) {
           setBackendOnline(false);
@@ -202,12 +401,6 @@ export default function Chatbot() {
           const voiceData = await voiceRes.json();
           if (isMounted && Array.isArray(voiceData) && voiceData.length > 0) {
             setVoices(voiceData);
-            const saved = localStorage.getItem("digital_twin_voice");
-            // If the user's saved voice was Christopher or unset, auto-select cloned voice if available
-            if (!saved || saved === "en-US-ChristopherNeural") {
-              const customVoice = voiceData.find((v: VoiceOption) => v.gender === "Custom") || voiceData[0];
-              setSelectedVoice(customVoice.id);
-            }
           }
         }
       } catch {
@@ -250,12 +443,12 @@ export default function Chatbot() {
       if (isMounted) {
         setMessages((prev) => {
           if (prev.length > 0) return prev;
+          const meta = getPersonaMeta(activePersona);
           return [
             {
               id: "greeting",
               role: "assistant",
-              content:
-                "Hello! 👋 I am **Makeshkumar's AI Digital Twin** with speech intelligence.\n\nAsk me anything about Makeshkumar's full-stack & AI engineering experience, projects, tech stack, or click the microphone to speak with me directly!",
+              content: meta.defaultGreeting,
               timestamp: getFormattedTime(),
             },
           ];
@@ -268,7 +461,56 @@ export default function Chatbot() {
     return () => {
       isMounted = false;
     };
-  }, [sessionId, API_URL]);
+  }, [sessionId, API_URL, activePersona]);
+
+  // Keep persona in sync when opening the chatbot and through periodic polling
+  useEffect(() => {
+    if (!isOpen) return;
+    let isMounted = true;
+
+    const syncPersona = async () => {
+      try {
+        const res = await fetch(`${API_URL}/persona`);
+        if (res.ok) {
+          const data = await res.json();
+          if (isMounted && data.active_persona) {
+            const nextP = data.active_persona;
+            setActivePersona(nextP);
+            try {
+              localStorage.setItem("twin_active_persona", nextP);
+            } catch {}
+            const meta = getPersonaMeta(nextP);
+            setMessages((prev) => {
+              if (
+                prev.length <= 1 &&
+                (prev.length === 0 || prev[0].id === "greeting" || prev[0].id === "reset_greeting")
+              ) {
+                return [
+                  {
+                    id: "greeting",
+                    role: "assistant",
+                    content: meta.defaultGreeting,
+                    timestamp: prev[0]?.timestamp || getFormattedTime(),
+                  },
+                ];
+              }
+              return prev;
+            });
+          }
+        }
+      } catch {
+        // ignore
+      }
+    };
+
+    syncPersona();
+    const interval = setInterval(syncPersona, 5000);
+
+    return () => {
+      isMounted = false;
+      clearInterval(interval);
+    };
+  }, [isOpen, API_URL]);
 
   // Auto-scroll chat to bottom
   const scrollToBottom = () => {
@@ -374,6 +616,107 @@ export default function Chatbot() {
     };
 
     setMessages((prev) => [...prev, userMsg]);
+
+    // Real-Time SSE Token Streaming when autoPlayAudio is disabled (TTFT < 300ms)
+    if (!autoPlayAudio) {
+      const botMsgId = createMessageId("bot");
+      let streamSuccess = false;
+
+      try {
+        const res = await fetch(`${API_URL}/chat/stream`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: rawText,
+            session_id: sessionId || "default",
+          }),
+        });
+
+        if (res.ok && res.body) {
+          streamSuccess = true;
+          setMessages((prev) => [
+            ...prev,
+            {
+              id: botMsgId,
+              role: "assistant",
+              content: "",
+              timestamp: getFormattedTime(),
+            },
+          ]);
+
+          const reader = res.body.getReader();
+          const decoder = new TextDecoder("utf-8");
+          let buffer = "";
+
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            buffer += decoder.decode(value, { stream: true });
+
+            const lines = buffer.split("\n\n");
+            buffer = lines.pop() || "";
+
+            for (const line of lines) {
+              const trimmed = line.trim();
+              if (trimmed.startsWith("data: ")) {
+                try {
+                  const parsed = JSON.parse(trimmed.slice(6));
+                  if (parsed.token) {
+                    setMessages((prev) =>
+                      prev.map((m) =>
+                        m.id === botMsgId ? { ...m, content: m.content + parsed.token } : m
+                      )
+                    );
+                  }
+                } catch {
+                  // Incomplete JSON segment
+                }
+              }
+            }
+          }
+        }
+      } catch (err) {
+        console.warn("SSE Streaming failed, falling back to /chat:", err);
+      }
+
+      if (!streamSuccess) {
+        // Fallback to standard /chat endpoint
+        try {
+          const res = await fetch(`${API_URL}/chat`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              message: rawText,
+              session_id: sessionId || "default",
+              include_audio: false,
+            }),
+          });
+          if (!res.ok) throw new Error(`Server returned ${res.status}`);
+          const data = await res.json();
+          setMessages((prev) => [
+            ...prev,
+            {
+              id: botMsgId,
+              role: "assistant",
+              content: data.reply || "I am unable to answer right now.",
+              timestamp: getFormattedTime(),
+            },
+          ]);
+        } catch {
+          setMessages((prev) => [
+            ...prev,
+            {
+              id: createMessageId("err"),
+              role: "assistant",
+              content: `⚠️ Failed to connect to the Digital Twin backend. Please make sure the backend server is running on \`${API_URL}\`.`,
+              timestamp: getFormattedTime(),
+            },
+          ]);
+        }
+      }
+      setIsLoading(false);
+      return;
+    }
 
     try {
       const res = await fetch(`${API_URL}/chat`, {
@@ -625,7 +968,7 @@ export default function Chatbot() {
 
   // Reset conversation memory on backend
   const handleResetHistory = async () => {
-    if (!confirm("Are you sure you want to reset your conversation history with Makeshkumar's Digital Twin?")) {
+    if (!confirm(currentPersonaMeta.resetConfirmText)) {
       return;
     }
 
@@ -651,7 +994,7 @@ export default function Chatbot() {
       {
         id: "reset_greeting",
         role: "assistant",
-        content: "Memory cleared! 🧹 What would you like to explore next about Makeshkumar?",
+        content: currentPersonaMeta.resetGreeting,
         timestamp: getFormattedTime(),
       },
     ]);
@@ -711,7 +1054,7 @@ export default function Chatbot() {
   };
 
   return (
-    <div className="fixed bottom-22 right-6 sm:right-8 z-50">
+    <div className="fixed bottom-20 right-3 sm:bottom-22 sm:right-8 z-50 flex flex-col items-end">
       {/* Chat Window */}
       <AnimatePresence>
         {isOpen && (
@@ -720,29 +1063,33 @@ export default function Chatbot() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="w-[calc(100vw-3rem)] sm:w-[420px] max-w-[440px] h-[580px] bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200/80 dark:border-gray-800 flex flex-col overflow-hidden text-[#1e2235] dark:text-gray-100"
+            className="mb-3 w-[calc(100vw-1.5rem)] sm:w-[420px] max-w-[440px] h-[min(580px,calc(100dvh-7.5rem))] max-h-[calc(100dvh-7.5rem)] bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-200/80 dark:border-gray-800 flex flex-col overflow-hidden text-[#1e2235] dark:text-gray-100"
           >
             {/* Header */}
             <div className="p-3.5 sm:p-4 border-b border-gray-200/80 dark:border-gray-800 bg-gradient-to-r from-violet-600/10 via-pink-500/10 to-teal-500/10 dark:from-violet-950/40 dark:via-pink-950/30 dark:to-teal-950/40 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-violet-600 to-pink-500 flex items-center justify-center text-white shadow-md shadow-violet-500/20">
-                    <Bot className="w-5 h-5" />
+                  <div
+                    className={`w-10 h-10 rounded-full bg-gradient-to-tr ${currentPersonaMeta.avatarBg} flex items-center justify-center text-white shadow-md`}
+                  >
+                    <PersonaIcon className="w-5 h-5" />
                   </div>
                   <span
                     className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white dark:border-gray-900 ${
                       backendOnline === false ? "bg-red-500" : "bg-emerald-500 animate-pulse"
                     }`}
-                    title={backendOnline === false ? "Backend Offline" : "Digital Twin Active"}
+                    title={backendOnline === false ? "Backend Offline" : currentPersonaMeta.statusLabel}
                   />
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5">
                     <h3 className="font-bold text-sm sm:text-base text-gray-900 dark:text-white leading-tight">
-                      Makeshkumar Twin
+                      {currentPersonaMeta.title}
                     </h3>
-                    <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full bg-violet-100 dark:bg-violet-900/50 text-violet-700 dark:text-violet-300">
-                      AI Voice
+                    <span
+                      className={`text-[10px] font-semibold px-1.5 py-0.5 rounded-full ${currentPersonaMeta.badgeClass}`}
+                    >
+                      {currentPersonaMeta.badge}
                     </span>
                   </div>
                   <p className="text-[11px] text-gray-500 dark:text-gray-400">
@@ -858,8 +1205,10 @@ export default function Chatbot() {
                   className={`flex items-end gap-2 ${m.role === "user" ? "justify-end" : "justify-start"}`}
                 >
                   {m.role === "assistant" && (
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-violet-600 to-pink-500 text-white flex items-center justify-center text-[10px] shrink-0 mb-1">
-                      <Bot className="w-3.5 h-3.5" />
+                    <div
+                      className={`w-6 h-6 rounded-full bg-gradient-to-tr ${currentPersonaMeta.avatarBg} text-white flex items-center justify-center text-[10px] shrink-0 mb-1 shadow-sm`}
+                    >
+                      <PersonaIcon className="w-3.5 h-3.5" />
                     </div>
                   )}
 
@@ -926,11 +1275,15 @@ export default function Chatbot() {
               {/* Typing indicator */}
               {isLoading && (
                 <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-violet-600 to-pink-500 text-white flex items-center justify-center text-[10px] shrink-0">
-                    <Bot className="w-3.5 h-3.5" />
+                  <div
+                    className={`w-6 h-6 rounded-full bg-gradient-to-tr ${currentPersonaMeta.avatarBg} text-white flex items-center justify-center text-[10px] shrink-0 shadow-sm`}
+                  >
+                    <PersonaIcon className="w-3.5 h-3.5" />
                   </div>
                   <div className="bg-gray-100 dark:bg-gray-800 border border-gray-200/50 dark:border-gray-700/50 px-4 py-2.5 rounded-2xl rounded-bl-none text-xs flex items-center gap-1.5 text-gray-500 dark:text-gray-400">
-                    <span className="font-medium text-gray-600 dark:text-gray-300">Twin is thinking</span>
+                    <span className="font-medium text-gray-600 dark:text-gray-300">
+                      {currentPersonaMeta.thinkingLabel}
+                    </span>
                     <span className="flex gap-1 items-center">
                       <span className="w-1.5 h-1.5 rounded-full bg-violet-600 animate-bounce" style={{ animationDelay: "0ms" }} />
                       <span className="w-1.5 h-1.5 rounded-full bg-pink-500 animate-bounce" style={{ animationDelay: "150ms" }} />
@@ -940,14 +1293,14 @@ export default function Chatbot() {
                 </div>
               )}
 
-              {/* Quick suggestion chips */}
-              {messages.length <= 2 && !isLoading && !isRecording && (
+              {/* Quick suggestion chips per persona */}
+              {currentPersonaMeta.suggestedQuestions.length > 0 && messages.length <= 2 && !isLoading && !isRecording && (
                 <div className="pt-2">
                   <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider mb-2">
                     Suggested Topics:
                   </p>
                   <div className="flex flex-col gap-1.5">
-                    {SUGGESTED_QUESTIONS.map((q, idx) => (
+                    {currentPersonaMeta.suggestedQuestions.map((q, idx) => (
                       <button
                         key={idx}
                         onClick={() => handleSendMessage(q)}
@@ -1019,7 +1372,11 @@ export default function Chatbot() {
                         handleSendMessage();
                       }
                     }}
-                    placeholder={backendOnline === false ? "Backend unavailable..." : "Ask or talk to Makesh's Twin..."}
+                    placeholder={
+                      backendOnline === false
+                        ? "Backend unavailable..."
+                        : currentPersonaMeta.placeholder
+                    }
                     className="flex-1 px-3.5 py-2.5 border border-gray-200 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder:text-gray-400 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 dark:focus:ring-violet-400 transition-all"
                     disabled={isLoading}
                   />
@@ -1048,16 +1405,16 @@ export default function Chatbot() {
           setIsOpen(!isOpen);
           stopCurrentAudio();
         }}
-        className="relative group flex items-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-pink-500 p-1 shadow-xl shadow-violet-500/30 transition-all hover:shadow-2xl hover:shadow-pink-500/40 text-white"
-        aria-label={isOpen ? "Close digital twin chat" : "Talk with Makeshkumar's AI Digital Twin"}
+        className={`relative group flex items-center gap-2 rounded-full bg-gradient-to-r ${currentPersonaMeta.avatarBg} p-1 shadow-xl shadow-violet-500/30 transition-all hover:shadow-2xl text-white`}
+        aria-label={isOpen ? "Close chat" : `Talk with ${currentPersonaMeta.title}`}
       >
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r from-violet-600 to-pink-500 text-white">
-          {isOpen ? <X className="w-6 h-6" /> : <Bot className="w-6 h-6" />}
+        <div className={`flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-r ${currentPersonaMeta.avatarBg} text-white`}>
+          {isOpen ? <X className="w-6 h-6" /> : <PersonaIcon className="w-6 h-6" />}
         </div>
 
         {!isOpen && (
           <span className="hidden sm:inline-block pr-4 pl-1 text-xs font-bold tracking-wide">
-            Talk to AI Twin
+            {activePersona === "digital-twin" ? "Talk to AI Twin" : `Talk to ${currentPersonaMeta.title}`}
           </span>
         )}
 
